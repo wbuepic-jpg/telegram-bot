@@ -4,10 +4,8 @@ from aiohttp import web
 from pyrogram import Client, filters
 from pyrogram.types import Message
 
-# ലോഗിംഗ് സെറ്റപ്പ്
 logging.basicConfig(level=logging.INFO)
 
-# ബോട്ട് സെറ്റപ്പ്
 API_ID = 2040
 API_HASH = "b18441a1ff607e10a989891a5462e627"
 BOT_TOKEN = "8856980115:AAEJFB6A1ioyt6cnxCekTamTBR-WATwLltw"
@@ -24,7 +22,6 @@ async def moderate_group(client: Client, message: Message):
         return
 
     text = message.text or message.caption or ""
-
     has_link = bool(
         message.entities
         and any(
@@ -60,7 +57,7 @@ async def handle(request):
     return web.Response(text="Bot is running 24/7!")
 
 
-async def run_web():
+async def main():
     web_app = web.Application()
     web_app.add_routes([web.get("/", handle)])
     runner = web.AppRunner(web_app)
@@ -68,13 +65,11 @@ async def run_web():
     site = web.TCPSite(runner, "0.0.0.0", 8080)
     await site.start()
 
-
-async def main():
-    await run_web()
     await app.start()
     logging.info("Telegram Bot Started Successfully!")
     await asyncio.Event().wait()
 
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(main())
