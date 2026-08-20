@@ -97,7 +97,7 @@ async def moderate_group(client: Client, message: Message):
         try:
             await message.delete()
             warning_msg = await message.reply(
-                f"Hello da ponnahh {user.mention} ഈ ഗ്രൂപ്പിൽ ലിങ്കുകൾ മാത്രം ഇടുക. എല്ലാവരുടെയും സഹകരണവും പിന്തുണയും പ്രതീക്ഷിക്കുന്നു, ഹാപ്പി ആയിരിക്കൂ!❤️💋"
+                f"Hello da ponnahh {user.mention} ഈ ഗ്രൂപ്പിൽ ലിങ്കുകൾ മാത്രം ഇടുക.!❤️💋"
             )
             await asyncio.sleep(30)
             await warning_msg.delete()
